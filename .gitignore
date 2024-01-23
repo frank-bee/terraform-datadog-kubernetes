@@ -3,3 +3,4 @@
 .terraform.lock.hcl
 README.md.orig.*
 README.md.toc.*
+/.idea/
