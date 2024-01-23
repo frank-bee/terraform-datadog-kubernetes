@@ -6,8 +6,7 @@ locals {
 }
 
 module "node_status" {
-  source  = "kabisa/generic-monitor/datadog"
-  version = "1.0.0"
+  source  = "github.com/frank-bee/terraform-datadog-generic-monitor"
 
   name                = "Node Status not OK"
   query               = "avg(${var.node_status_evaluation_period}):avg:kubernetes_state.node.status{${local.node_status_filter}} by {kube_cluster_name,node} < 1"
@@ -30,7 +29,7 @@ module "node_status" {
   service_display_name = var.service_display_name
   notification_channel = var.notification_channel
   additional_tags      = var.additional_tags
-  locked               = var.locked
+  //locked               = var.locked
   name_prefix          = var.name_prefix
   name_suffix          = var.name_suffix
 }
