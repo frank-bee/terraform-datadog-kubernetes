@@ -6,7 +6,7 @@ locals {
 }
 
 module "pod_restarts" {
-  source  = "github.com/frank-bee/terraform-datadog-generic-monitor"
+  source  = "git::https://github.com/frank-bee/terraform-datadog-generic-monitor.git?ref=1.0.0-patched"
 
   name             = "Restarting Pods"
   query            = "change(avg(${var.pod_restarts_evaluation_period}),${var.pod_restarts_evaluation_period}):exclude_null(avg:kubernetes.containers.restarts{${local.pod_restarts_filter}} by {pod_name}) > ${var.pod_restarts_critical}"

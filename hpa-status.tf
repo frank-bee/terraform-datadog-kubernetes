@@ -5,7 +5,7 @@ locals {
 }
 
 module "hpa_status" {
-  source  = "github.com/frank-bee/terraform-datadog-generic-monitor"
+  source  = "git::https://github.com/frank-bee/terraform-datadog-generic-monitor.git?ref=1.0.0-patched"
 
   name             = "HPA Status not OK"
   query            = "avg(${var.hpa_status_evaluation_period}):avg:kubernetes_state.hpa.condition{${local.hpa_status_filter}} by {hpa,kube_namespace,status,condition} < 1"

@@ -6,7 +6,7 @@ locals {
 }
 
 module "pods_pending" {
-  source  = "github.com/frank-bee/terraform-datadog-generic-monitor"
+  source  = "git::https://github.com/frank-bee/terraform-datadog-generic-monitor.git?ref=1.0.0-patched"
 
   name  = "Pods Pending"
   query = "min(${var.pods_pending_evaluation_period}):default_zero(max:kubernetes_state.pod.status_phase{phase:pending${var.filter_str_concatenation}${local.pods_pending_filter}} by {kube_namespace}) > ${var.pods_pending_critical}"

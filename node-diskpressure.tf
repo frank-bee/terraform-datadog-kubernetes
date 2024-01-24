@@ -6,7 +6,7 @@ locals {
 }
 
 module "node_diskpressure" {
-  source  = "github.com/frank-bee/terraform-datadog-generic-monitor"
+  source  = "git::https://github.com/frank-bee/terraform-datadog-generic-monitor.git?ref=1.0.0-patched"
 
   name             = "Nodes with Diskpressure"
   query            = "avg(${var.node_diskpressure_evaluation_period}):max:kubernetes_state.node.by_condition{${local.node_diskpressure_filter} AND condition:diskpressure AND (status:true OR status:unknown)} by {kube_cluster_name,host} > ${var.node_diskpressure_critical}"

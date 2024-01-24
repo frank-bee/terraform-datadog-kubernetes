@@ -6,7 +6,7 @@ locals {
 }
 
 module "persistent_volumes_low" {
-  source  = "github.com/frank-bee/terraform-datadog-generic-monitor"
+  source  = "git::https://github.com/frank-bee/terraform-datadog-generic-monitor.git?ref=1.0.0-patched"
 
   name             = "Failed Persistent Volume Claims"
   query            = "avg(${var.persistent_volumes_evaluation_period}):max:kubernetes_state.persistentvolume.by_phase{${local.persistent_volumes_filter} AND phase:failed} > ${var.persistent_volumes_critical}"

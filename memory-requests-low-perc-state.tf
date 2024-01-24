@@ -6,7 +6,7 @@ locals {
 }
 
 module "memory_requests_low_perc_state" {
-  source  = "github.com/frank-bee/terraform-datadog-generic-monitor"
+  source  = "git::https://github.com/frank-bee/terraform-datadog-generic-monitor.git?ref=1.0.0-patched"
 
   name             = "Available Memory for Requests in percentage Low"
   query            = "max(${var.memory_requests_low_perc_state_evaluation_period}):( max:kubernetes_state.container.memory_requested{${local.memory_requests_low_perc_state_filter}} / max:kubernetes_state.node.memory_allocatable{${local.memory_requests_low_perc_state_filter}} ) * 100 > ${var.memory_requests_low_perc_state_critical}"

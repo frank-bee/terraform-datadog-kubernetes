@@ -6,7 +6,7 @@ locals {
 }
 
 module "deploy_desired_vs_status" {
-  source  = "github.com/frank-bee/terraform-datadog-generic-monitor"
+  source  = "git::https://github.com/frank-bee/terraform-datadog-generic-monitor.git?ref=1.0.0-patched"
 
   name             = "Desired pods vs current pods (Deployments)"
   query            = "avg(${var.deploy_desired_vs_status_evaluation_period}):max:kubernetes_state.deployment.replicas_desired{${local.deploy_desired_vs_status_filter}} by {kube_cluster_name} - max:kubernetes_state.deployment.replicas_available{${local.deploy_desired_vs_status_filter}} by {kube_cluster_name} > ${var.deploy_desired_vs_status_critical}"

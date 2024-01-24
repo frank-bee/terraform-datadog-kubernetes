@@ -6,7 +6,7 @@ locals {
 }
 
 module "node_memorypressure" {
-  source  = "github.com/frank-bee/terraform-datadog-generic-monitor"
+  source  = "git::https://github.com/frank-bee/terraform-datadog-generic-monitor.git?ref=1.0.0-patched"
 
   name             = "Nodes with Memorypressure"
   query            = "avg(${var.node_memorypressure_evaluation_period}):max:kubernetes_state.node.by_condition{${local.node_memorypressure_filter} AND condition:memorypressure AND (status:true OR status:unknown)} by {kube_cluster_name,host} > ${var.node_memorypressure_critical}"

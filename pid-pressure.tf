@@ -6,7 +6,7 @@ locals {
 }
 
 module "pid_pressure" {
-  source  = "github.com/frank-bee/terraform-datadog-generic-monitor"
+  source  = "git::https://github.com/frank-bee/terraform-datadog-generic-monitor.git?ref=1.0.0-patched"
 
   name             = "Nodes with PID Pressure"
   query            = "avg(${var.pid_pressure_evaluation_period}):max:kubernetes_state.node.by_condition{${local.pid_pressure_filter} AND condition:pidpressure AND (status:true OR status:unknown)} by {kube_cluster_name,host} > ${var.pid_pressure_critical}"
